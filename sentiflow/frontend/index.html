@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentiFlow - Customer Support Chat</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🎯 SentiFlow</h1>
+                <p class="subtitle">Real-Time Customer Sentiment Intelligence</p>
+            </div>
+            <div class="header-actions">
+                <button id="resetBtn" class="btn-secondary">Reset Chat</button>
+                <a href="/dashboard" class="btn-primary">Analytics Dashboard</a>
+            </div>
+        </header>
+
+        <!-- Main Chat Area -->
+        <main class="chat-container">
+            <!-- Sentiment Indicator -->
+            <div id="sentimentIndicator" class="sentiment-indicator">
+                <div class="sentiment-label">Current Sentiment:</div>
+                <div id="sentimentBadge" class="sentiment-badge neutral">
+                    <span id="sentimentIcon">😐</span>
+                    <span id="sentimentText">Neutral</span>
+                </div>
+                <div class="sentiment-score">
+                    Confidence: <span id="sentimentConfidence">--</span>%
+                </div>
+                <div class="sentiment-wave">
+                    <svg viewBox="0 0 500 100" preserveAspectRatio="none">
+                        <path id="wave" d="M0,50 Q125,20 250,50 T500,50" fill="none" stroke="currentColor" stroke-width="3">
+                            <animate attributeName="d" dur="3s" repeatCount="indefinite"
+                                values="
+                                   M0,50 Q125,20 250,50 T500,50;
+                                   M0,50 Q125,80 250,50 T500,50;
+                                   M0,50 Q125,20 250,50 T500,50
+                                " />
+                        </path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="chatMessages" class="chat-messages">
+                <div class="message assistant">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p>Hello! I'm your SentiFlow support assistant. I'm here to help with your questions about returns, shipping, warranties, and more. How can I assist you today?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                <div class="typing-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <span>Thinking…</span>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <textarea 
+                    id="messageInput" 
+                    placeholder="Type your message here..."
+                    rows="2"
+                ></textarea>
+                <button id="sendBtn" class="btn-send">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="currentColor"/>
+                    </svg>
+                    Send
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by Google Cloud Vertex AI + Elastic Search | AI Accelerate Hackathon 2025</p>
+        </footer>
+    </div>
+
+    <script src="js/chat.js"></script>
+</body>
+</html>

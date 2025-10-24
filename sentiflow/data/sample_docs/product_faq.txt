@@ -1,0 +1,31 @@
+PRODUCT FAQ
+
+Q: How do I track my order?
+A: Check your shipping confirmation email for the tracking number, or log into your account and open Orders > Track. Tracking updates typically appear within 12–24 hours after the carrier picks up your package.
+
+Q: Can I change my shipping address after ordering?
+A: Contact support within 1 hour of placing the order. We can update addresses before fulfillment begins. Once an order has shipped, we can’t change the destination, but we can help you reroute with the carrier where possible.
+
+Q: What payment methods do you accept?
+A: We accept major credit/debit cards (Visa, Mastercard, AmEx), PayPal, Apple Pay, and Google Pay. All payments are processed securely and PCI compliant.
+
+Q: When will my order ship?
+A: Orders placed before 2pm EST ship the same business day. Orders placed after 2pm or on weekends/holidays ship the next business day.
+
+Q: How long does standard shipping take?
+A: Standard shipping usually takes 5–7 business days within the continental U.S. Expedited options are available at checkout.
+
+Q: Do you ship internationally?
+A: Yes, we ship to select countries. International delivery times vary by destination and customs processing. Duties and taxes may apply.
+
+Q: How do I start a return?
+A: Visit Returns in your account or go to our Returns Portal link in your order confirmation. Enter your order number and email to generate a prepaid label (where eligible).
+
+Q: Can I return opened electronics?
+A: Electronics have a 15-day return window from delivery if all accessories are included and the item is in like-new condition. See return_policy.txt for details.
+
+Q: My discount code isn’t working—what should I do?
+A: Ensure the code hasn’t expired and meets the offer conditions (minimum spend, product exclusions). If issues persist, contact support and we’ll help apply the discount.
+
+Q: How do I contact support?
+A: Email support@example.com or use Live Chat from 9am–6pm EST, Mon–Fri. For urgent order issues, include your order number for faster assistance.

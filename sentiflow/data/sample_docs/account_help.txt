@@ -1,0 +1,36 @@
+ACCOUNT MANAGEMENT HELP
+
+Creating an Account
+- Click "Sign Up" in the top-right corner
+- Provide a valid email and a strong password
+- Verify your email to activate full features (tracking, returns, saved addresses)
+
+Managing Your Profile
+- Go to Account > Profile to update your name, phone, and preferences
+- Add or edit saved addresses under Account > Addresses
+- Manage payment methods securely under Account > Payments
+
+Resetting Your Password
+- Click "Forgot Password" on the sign-in page
+- Enter your account email and check for the reset link
+- The link expires after 60 minutes; request a new one if needed
+
+Two-Factor Authentication (2FA)
+- Enable 2FA under Account > Security for added protection
+- Choose authenticator app or SMS; follow the on-screen setup steps
+
+Order History and Invoices
+- Find past orders under Account > Orders
+- Click an order to view details, download invoices, or start a return
+
+Subscriptions and Notifications
+- Manage newsletter and product alerts under Account > Preferences
+- Unsubscribe anytime via the link in emails or within your preferences
+
+Closing Your Account
+- Contact support to request account closure
+- We’ll verify your identity and process the request within 3–5 business days
+
+Privacy and Data Requests
+- To request a copy or deletion of your data, visit Privacy Requests in Account settings
+- We respond to verified requests within the applicable legal timeframe

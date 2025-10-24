@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: financegpt-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - financegpt
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: financegpt-backend
+    environment:
+      - FLASK_ENV=production
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - VERTEX_AI_LOCATION=${VERTEX_AI_LOCATION}
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials.json
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/app/credentials.json:ro
+    depends_on:
+      - elasticsearch
+    networks:
+      - financegpt
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: financegpt-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - financegpt
+
+volumes:
+  es_data:
+    driver: local
+
+networks:
+  financegpt:
+    driver: bridge
