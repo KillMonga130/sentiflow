@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SentiFlow - Customer Support Chat</title>
+    <meta name="description" content="SentiFlow - Real-Time Customer Sentiment Intelligence. AI-powered support chatbot with sentiment analysis and RAG.">
+    <title>SentiFlow - Real-Time Sentiment Intelligence</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -11,12 +12,16 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <h1>🎯 SentiFlow</h1>
+                <h1>SentiFlow</h1>
                 <p class="subtitle">Real-Time Customer Sentiment Intelligence</p>
             </div>
             <div class="header-actions">
-                <button id="resetBtn" class="btn-secondary">Reset Chat</button>
-                <a href="/dashboard" class="btn-primary">Analytics Dashboard</a>
+                <button id="resetBtn" class="btn-secondary" title="Start a new conversation">
+                    🔄 Reset Chat
+                </button>
+                <a href="/dashboard" class="btn-primary" title="View analytics and insights">
+                    📊 Dashboard
+                </a>
             </div>
         </header>
 
@@ -24,17 +29,23 @@
         <main class="chat-container">
             <!-- Sentiment Indicator -->
             <div id="sentimentIndicator" class="sentiment-indicator">
-                <div class="sentiment-label">Current Sentiment:</div>
+                <div class="sentiment-label">Current Sentiment</div>
                 <div id="sentimentBadge" class="sentiment-badge neutral">
-                    <span id="sentimentIcon">😐</span>
+                    <span id="sentimentIcon" aria-label="sentiment-icon">😐</span>
                     <span id="sentimentText">Neutral</span>
                 </div>
                 <div class="sentiment-score">
                     Confidence: <span id="sentimentConfidence">--</span>%
                 </div>
                 <div class="sentiment-wave">
-                    <svg viewBox="0 0 500 100" preserveAspectRatio="none">
-                        <path id="wave" d="M0,50 Q125,20 250,50 T500,50" fill="none" stroke="currentColor" stroke-width="3">
+                    <svg viewBox="0 0 500 100" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#667EEA;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764BA2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path id="wave" d="M0,50 Q125,20 250,50 T500,50" fill="none" stroke="url(#waveGradient)" stroke-width="3" stroke-linecap="round">
                             <animate attributeName="d" dur="3s" repeatCount="indefinite"
                                 values="
                                    M0,50 Q125,20 250,50 T500,50;
@@ -47,17 +58,17 @@
             </div>
 
             <!-- Chat Messages -->
-            <div id="chatMessages" class="chat-messages">
+            <div id="chatMessages" class="chat-messages" role="log" aria-label="chat-messages">
                 <div class="message assistant">
-                    <div class="message-avatar">🤖</div>
+                    <div class="message-avatar" role="img" aria-label="assistant">🤖</div>
                     <div class="message-content">
-                        <p>Hello! I'm your SentiFlow support assistant. I'm here to help with your questions about returns, shipping, warranties, and more. How can I assist you today?</p>
+                        <p>Hello! I'm your SentiFlow support assistant. I understand customer emotions and adapt my responses accordingly. I'm here to help with your questions about returns, shipping, warranties, and more. How can I assist you today?</p>
                     </div>
                 </div>
             </div>
 
             <!-- Loading Indicator -->
-            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+            <div id="loadingIndicator" class="loading-indicator" style="display: none;" role="status" aria-live="polite">
                 <div class="typing-dots">
                     <span></span><span></span><span></span>
                 </div>
@@ -70,9 +81,10 @@
                     id="messageInput" 
                     placeholder="Type your message here..."
                     rows="2"
+                    aria-label="message-input"
                 ></textarea>
-                <button id="sendBtn" class="btn-send">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <button id="sendBtn" class="btn-send" aria-label="send-message">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="currentColor"/>
                     </svg>
                     Send
@@ -82,7 +94,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Powered by Google Cloud Vertex AI + Elastic Search | AI Accelerate Hackathon 2025</p>
+            <p>✨ Powered by Google Cloud Vertex AI + Elasticsearch | AI Accelerate Hackathon 2025</p>
         </footer>
     </div>
 
