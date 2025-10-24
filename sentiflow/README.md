@@ -252,6 +252,22 @@ gcloud run deploy sentiflow \
   --set-env-vars GCP_PROJECT_ID=$PROJECT_ID,ELASTIC_CLOUD_ID=$ELASTIC_CLOUD_ID,ELASTIC_API_KEY=$ELASTIC_API_KEY
 ```
 
+On Windows (PowerShell), you can use the helper script:
+
+```powershell
+# From repo root
+Set-Location .\sentiflow
+
+# Deploy using env vars (loads from .env if present)
+./deploy.ps1 -ProjectId $env:GCP_PROJECT_ID -Region us-central1
+
+# Or, use Secret Manager for Elastic API key
+./deploy.ps1 -ProjectId $env:GCP_PROJECT_ID -Region us-central1 -UseSecret
+
+# If Docker Desktop isn't running, build in the cloud instead
+./deploy.ps1 -ProjectId $env:GCP_PROJECT_ID -Region us-central1 -UseSource
+```
+
 ### Environment Variables (Production)
 Set these in Cloud Run environment:
 - `GCP_PROJECT_ID`

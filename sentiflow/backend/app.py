@@ -144,8 +144,11 @@ def chat():
         
         # Update analytics
         analytics_data["total_queries"] += 1
-        sentiment_label = result['sentiment']['label']
-        analytics_data["sentiment_distribution"][sentiment_label] += 1
+        sentiment_label = result.get('sentiment', {}).get('label', 'neutral')
+        if sentiment_label in analytics_data["sentiment_distribution"]:
+            analytics_data["sentiment_distribution"][sentiment_label] += 1
+        else:
+            analytics_data["sentiment_distribution"][sentiment_label] = 1
         
         # Store recent query (keep last 50)
         analytics_data["recent_queries"].append({
@@ -158,16 +161,16 @@ def chat():
         
         # Build response
         response = {
-            "response": result['response'],
-            "sentiment": result['sentiment'],
+            "response": result.get('response', 'Unable to generate response'),
+            "sentiment": result.get('sentiment', {"label": "neutral", "score": 0.5, "emotion": "unknown", "confidence": 0}),
             "context": {
-                "num_documents": result['context']['num_documents'],
+                "num_documents": result.get('context', {}).get('num_documents', 0),
                 "sources": [
                     {
                         "title": doc.get('title', 'Untitled'),
                         "source": doc.get('source', 'Unknown')
                     }
-                    for doc in result['context']['documents']
+                    for doc in result.get('context', {}).get('documents', [])
                 ]
             },
             "timestamp": datetime.utcnow().isoformat()

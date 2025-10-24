@@ -4,7 +4,7 @@ Real-time emotion detection using Google Cloud Gemini AI
 """
 
 import vertexai
-from vertexai.generative_models import GenerativeModel, GenerationConfig
+from vertexai.generative_models import GenerativeModel
 import json
 import logging
 from typing import Dict
@@ -29,16 +29,8 @@ class SentimentAnalyzer:
                 location=Config.VERTEX_AI_LOCATION
             )
             
-            # Initialize Gemini model
+            # Initialize Gemini model - use simple name to avoid SDK path bugs
             self.model = GenerativeModel(Config.GEMINI_MODEL)
-            
-            # Generation config for consistent JSON output
-            self.generation_config = GenerationConfig(
-                temperature=0.3,  # Low temperature for consistent classification
-                top_p=0.8,
-                top_k=40,
-                max_output_tokens=256,
-            )
             
             logger.info(f"✅ Initialized SentimentAnalyzer with {Config.GEMINI_MODEL}")
             
@@ -85,8 +77,7 @@ JSON output:"""
             
             # Generate response
             response = self.model.generate_content(
-                prompt,
-                generation_config=self.generation_config
+                prompt
             )
             
             # Parse JSON from response

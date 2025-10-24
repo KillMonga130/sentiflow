@@ -4,7 +4,7 @@ Uses RAG pattern to generate context-aware, sentiment-adaptive responses
 """
 
 import vertexai
-from vertexai.generative_models import GenerativeModel, GenerationConfig
+from vertexai.generative_models import GenerativeModel
 import time
 import sys
 import os
@@ -39,20 +39,11 @@ class ResponseGenerator:
                 location=Config.VERTEX_AI_LOCATION
             )
             
-            # Candidate models in fallback order (first is the configured one)
+            # Candidate models - use simple names (not full resource paths) to avoid SDK bugs
             self._model_names = [
-                Config.GEMINI_MODEL,
-                "gemini-1.5-flash",
-                "gemini-1.5-flash-8b",
+                "gemini-2.0-flash-exp",
+                "gemini-1.5-pro"
             ]
-
-            # Set default generation config (kept modest to reduce quota pressure)
-            self._gen_config = GenerationConfig(
-                temperature=0.7,
-                top_p=0.9,
-                top_k=40,
-                max_output_tokens=512,
-            )
 
             # Lazy model init; we will instantiate per-attempt to allow fallback
             self.model = None
@@ -195,7 +186,6 @@ Answer the customer's question using the provided context from the knowledge bas
                 sentiment_data=sentiment_data,
                 conversation_history=self.conversation_history
             )
-            
             # Step 4: Generate response
             logger.info("🤖 Generating response with Gemini...")
 
@@ -208,12 +198,15 @@ Answer the customer's question using the provided context from the knowledge bas
                     if model_name is None:
                         continue
                     logger.info(f"🧠 Using model: {model_name}")
-                    self.model = GenerativeModel(model_name=model_name, generation_config=self._gen_config)
+                    self.model = GenerativeModel(model_name)
 
                     # Up to 2 quick retries for transient quota issues
                     for attempt in range(1, 3):
                         try:
-                            response = self.model.generate_content(prompt)
+                            response = self.model.generate_content(
+                                prompt,
+                                generation_config=None
+                            )
                             response_text = response.text
                             break
                         except Exception as e:

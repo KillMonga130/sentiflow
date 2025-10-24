@@ -4,7 +4,7 @@ flask-cors==4.0.0
 gunicorn==21.2.0
 
 # Google Cloud (Python 3.12 compatible versions)
-google-cloud-aiplatform>=1.43.0
+google-cloud-aiplatform>=1.70.0
 google-cloud-storage>=2.14.0
 google-cloud-bigquery>=3.14.0
 google-cloud-pubsub>=2.18.0

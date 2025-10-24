@@ -148,6 +148,29 @@ chmod +x deploy.sh
 ./deploy.sh
 ```
 
+### Option 1b (Windows PowerShell): Using deploy.ps1
+```powershell
+# From repo root
+Set-Location .\sentiflow
+
+# If you have a .env file, the script will load it automatically
+# Deploy using plaintext env vars (fastest)
+./deploy.ps1 -ProjectId $env:GCP_PROJECT_ID -Region us-central1
+
+# Or, store the Elastic API key in Secret Manager and wire it automatically
+./deploy.ps1 -ProjectId $env:GCP_PROJECT_ID -Region us-central1 -UseSecret
+
+# If Docker Desktop isn't running, build in the cloud instead:
+./deploy.ps1 -ProjectId $env:GCP_PROJECT_ID -Region us-central1 -UseSource
+./deploy.ps1 -ProjectId $env:GCP_PROJECT_ID -Region us-central1 -UseSource -UseSecret
+```
+
+The PowerShell script will:
+- Enable required APIs (Vertex AI, Cloud Run, Artifact Registry)
+- Either build and push the Docker image locally to gcr.io, or build from source in Google Cloud (when -UseSource)
+- Optionally create/update a Secret Manager secret named `elastic-api-key`
+- Deploy the service to Cloud Run with the right environment mapping
+
 ### Option 2: Manual Deployment
 ```bash
 # Set variables
